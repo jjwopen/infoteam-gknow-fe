@@ -5,7 +5,7 @@ import Menu from "../components/Menu.tsx";
 export const Route = createRootRoute({
   component: () => (
     <>
-      <header className="w-screen flex flex-row items-center justify-between px-6 py-3">
+      <header className="min-w-screen flex flex-row items-center justify-between px-6 py-3">
         <div className="">
           <p className="font-bold text-2xl">Gknow</p>
         </div>
@@ -21,13 +21,13 @@ export const Route = createRootRoute({
           <span className="material-icons text-3xl! text-main-blue">account_circle</span>
         </div>
       </header>
-      <div id="main" className="w-screen flex flex-row px-6 py-3 gap-20">
+      <div id="main" className="flex flex-row px-6 py-3 gap-20">
         <ul id="menu" className="flex flex-col gap-0.5">
           <Menu icon="person_search" text="교수님 찾기" path="/prof" />
           <Menu icon="info" text="시설 정보" path="/facility" />
           <Menu icon="calendar_month" text="세미나 일정" path="/seminar" />
         </ul>
-        <div id="content" className="flex flex-col flex-1 w-4/5 gap-2">
+        <div id="content" className="flex flex-col flex-1 h-full w-4/5 gap-2">
           <Outlet />
         </div>
       </div>

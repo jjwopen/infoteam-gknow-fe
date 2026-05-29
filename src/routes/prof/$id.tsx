@@ -2,11 +2,16 @@ import {createFileRoute, useNavigate} from '@tanstack/react-router'
 import ProfInfo from "../../components/ProfInfo.tsx";
 
 export const Route = createFileRoute('/prof/$id')({
+  loader: loader,
   validateSearch: (search) => ({
     name: search.name as string
   }),
   component: RouteComponent,
 })
+
+async function loader() {
+
+}
 
 function RouteComponent() {
   const navigate = useNavigate();

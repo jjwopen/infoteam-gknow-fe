@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SeminarIndexRouteImport } from './routes/seminar/index'
 import { Route as ProfIndexRouteImport } from './routes/prof/index'
 import { Route as FacilityIndexRouteImport } from './routes/facility/index'
+import { Route as SeminarIdRouteImport } from './routes/seminar/$id'
 import { Route as ProfIdRouteImport } from './routes/prof/$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,11 @@ const FacilityIndexRoute = FacilityIndexRouteImport.update({
   path: '/facility/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeminarIdRoute = SeminarIdRouteImport.update({
+  id: '/seminar/$id',
+  path: '/seminar/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfIdRoute = ProfIdRouteImport.update({
   id: '/prof/$id',
   path: '/prof/$id',
@@ -44,6 +50,7 @@ const ProfIdRoute = ProfIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/prof/$id': typeof ProfIdRoute
+  '/seminar/$id': typeof SeminarIdRoute
   '/facility/': typeof FacilityIndexRoute
   '/prof/': typeof ProfIndexRoute
   '/seminar/': typeof SeminarIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/prof/$id': typeof ProfIdRoute
+  '/seminar/$id': typeof SeminarIdRoute
   '/facility': typeof FacilityIndexRoute
   '/prof': typeof ProfIndexRoute
   '/seminar': typeof SeminarIndexRoute
@@ -59,21 +67,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/prof/$id': typeof ProfIdRoute
+  '/seminar/$id': typeof SeminarIdRoute
   '/facility/': typeof FacilityIndexRoute
   '/prof/': typeof ProfIndexRoute
   '/seminar/': typeof SeminarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/prof/$id' | '/facility/' | '/prof/' | '/seminar/'
+  fullPaths:
+    | '/'
+    | '/prof/$id'
+    | '/seminar/$id'
+    | '/facility/'
+    | '/prof/'
+    | '/seminar/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/prof/$id' | '/facility' | '/prof' | '/seminar'
-  id: '__root__' | '/' | '/prof/$id' | '/facility/' | '/prof/' | '/seminar/'
+  to: '/' | '/prof/$id' | '/seminar/$id' | '/facility' | '/prof' | '/seminar'
+  id:
+    | '__root__'
+    | '/'
+    | '/prof/$id'
+    | '/seminar/$id'
+    | '/facility/'
+    | '/prof/'
+    | '/seminar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProfIdRoute: typeof ProfIdRoute
+  SeminarIdRoute: typeof SeminarIdRoute
   FacilityIndexRoute: typeof FacilityIndexRoute
   ProfIndexRoute: typeof ProfIndexRoute
   SeminarIndexRoute: typeof SeminarIndexRoute
@@ -109,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FacilityIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seminar/$id': {
+      id: '/seminar/$id'
+      path: '/seminar/$id'
+      fullPath: '/seminar/$id'
+      preLoaderRoute: typeof SeminarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/prof/$id': {
       id: '/prof/$id'
       path: '/prof/$id'
@@ -122,6 +152,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProfIdRoute: ProfIdRoute,
+  SeminarIdRoute: SeminarIdRoute,
   FacilityIndexRoute: FacilityIndexRoute,
   ProfIndexRoute: ProfIndexRoute,
   SeminarIndexRoute: SeminarIndexRoute,

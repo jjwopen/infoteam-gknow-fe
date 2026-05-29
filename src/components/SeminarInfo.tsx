@@ -1,34 +1,22 @@
+import {useNavigate} from "@tanstack/react-router";
+
 type SeminarInfoProps = {
+  id: string;
   title: string;
-  date: string;
-  duedate: string;
-  target: string;
+  preview: string;
 }
 
-export default function SeminarInfo({title, date, duedate, target}: SeminarInfoProps) {
+export default function SeminarInfo({id, title, preview}: SeminarInfoProps) {
+  const navigate = useNavigate();
 
 
   return (
-      <div className="flex flex-row justify-between imte p-4 hover:bg-e2 transition-colors duration-200 rounded-xl">
-        <div className="flex flex-col gap-3 font-semibold text-xl">
-          <p>{title}</p>
-          <div className="flex flex-row gap-10">
-            <div className="flex flex-col text-lg gap-1.5">
-              <div className="flex flex-row items-center gap-2">
-                일자: {date}
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                신청 기한: {duedate}
-              </div>
-            </div>
-            <div className="flex flex-col text-lg gap-1.5">
-              <div className="flex flex-row items-center gap-2">
-                대상: {target}
-              </div>
-            </div>
-            <div className="flex flex-col text-lg gap-1.5">
-            </div>
-          </div>
+      <div id={`seminar-${id}`} className="flex flex-row justify-between imte p-4 hover:bg-e2 transition-colors duration-200 rounded-xl"
+           onClick={() => navigate({to: `/seminar/${id}`})}
+      >
+        <div className="flex flex-col gap-3">
+          <p className="font-semibold text-xl">{title}</p>
+          <p className="">{preview}</p>
         </div>
       </div>
 
