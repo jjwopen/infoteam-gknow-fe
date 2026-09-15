@@ -1,5 +1,10 @@
 import {createFileRoute, useNavigate} from '@tanstack/react-router'
 import ProfInfo from "../../components/ProfInfo.tsx";
+import axios from "axios";
+
+type Professor = {
+
+}
 
 export const Route = createFileRoute('/prof/$id')({
   loader: loader,
@@ -9,11 +14,17 @@ export const Route = createFileRoute('/prof/$id')({
   component: RouteComponent,
 })
 
-async function loader() {
+async function loader({ params }: { params: { id: string } }) {
+  const {id} = params;
+  const [professors] = await Promise.all([
+    axios.get(`https://infoteam-gknow-be.onrender.com/professors/${id}`).then(res => res.data)
+  ]);
 
+  return {professors};
 }
 
 function RouteComponent() {
+  const {professors} = Route.useLoaderData();
   const navigate = useNavigate();
   const {name} = Route.useSearch();
 
@@ -26,6 +37,7 @@ function RouteComponent() {
           <p>→</p>
           <p>{name}</p>
         </div>
+
         <ProfInfo id={1} nameKor="홍길동" nameEng="Gildong Hong" departments={[{
           id: 1,
           name: "입학학생처",

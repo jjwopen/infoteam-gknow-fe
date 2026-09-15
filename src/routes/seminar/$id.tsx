@@ -1,7 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router'
 import axios from "axios";
-import dummy1 from "./test.json";
-import dummy2 from "./test2.json";
 
 type Mail = {
   id: string;

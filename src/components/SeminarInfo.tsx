@@ -11,7 +11,8 @@ export default function SeminarInfo({id, title, preview}: SeminarInfoProps) {
 
 
   return (
-      <div id={`seminar-${id}`} className="flex flex-row justify-between imte p-4 hover:bg-e2 transition-colors duration-200 rounded-xl"
+      <div id={`seminar-${id}`}
+           className="flex flex-row justify-between imte p-4 hover:bg-e2 transition-colors duration-200 rounded-xl"
            onClick={() => navigate({to: `/seminar/${id}`})}
       >
         <div className="flex flex-col gap-3">
