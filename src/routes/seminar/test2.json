@@ -1,0 +1,15 @@
+{
+  "id": "asdf",
+  "subject": "title2",
+  "bodyHTML": "",
+  "bodyPreview": "test2",
+  "hasAttachments": true,
+  "attachments": [
+    {
+      "id": "att",
+      "fileName": "ex.png",
+      "contentType": "image/png",
+      "size": 1024
+    }
+  ]
+}
